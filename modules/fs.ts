@@ -19,17 +19,28 @@ fs.writeFile(
       return console.log("Error: ", error);
     }
     console.log("Arquivo criado com sucesso!");
-  }
-);
+    //Adicionando conteúdo a um arquivo com conteúdo
+    fs.appendFile(
+      path.join(__dirname, "/test", "test.txt"),
+      ", mais conteúdo ao texto!",
+      (error) => {
+        if (error) {
+          return console.log("Error: ", error);
+        }
+        console.log("Texto adicionado ao conteúdo existente com sucesso!");
+      }
+    );
 
-//Adicionando conteúdo a um arquivo com conteúdo
-fs.appendFile(
-  path.join(__dirname, "/test", "test.txt"),
-  ", mais conteúdo ao texto!",
-  (error) => {
-    if (error) {
-      return console.log("Error: ", error);
-    }
-    console.log("Texto adicionado ao conteúdo existente com sucesso!");
+    //ler um arquivo
+    fs.readFile(
+      path.join(__dirname, "/test", "test.txt"),
+      "utf8",
+      (error, data) => {
+        if (error) {
+          return console.log(`Error : ${error}`);
+        }
+        console.log(data);
+      }
+    );
   }
 );
